@@ -1,32 +1,38 @@
 
 #include <iostream>
-    using namespace std;
+using namespace std;
 
-    class BstNode
+class BstNode
+{
+public:
+    int data;
+    BstNode* left;
+    BstNode* right;
+
+    BstNode(int x)
     {
-    public:
-        int data;
-        struct BstNode* left;
-        struct BstNode* right;
-
-        BstNode(int x)
-        {
-            data = x;
-            left = right = NULL;
-        }
-    };
+        data = x;
+        left = right = NULL;
+    }
+};
 
 void printLeftview(bool *levels, BstNode *root, int curlevel)
 {
-    if(!root){return;}
+    if(!root)
+    {
+        return;
+    }
 
     if(levels[curlevel]==false)//check in array of levels - by default all was false- On visit make true.
     {
         levels[curlevel] = true;
         cout<<root->data<<" ";
     }
-    printLeftview(levels,root->left,curlevel+1);    //left child called
-    printLeftview(levels,root->right,curlevel+1);   //right child called
+    //Interchange these two lines according to  left or right view
+    printLeftview(levels,root->left,curlevel+1);    //left child called--LEFT VIEW
+    printLeftview(levels,root->right,curlevel+1);   //right child called - call first for RightView of BT
+
+
 }
 
 void leftView(BstNode *root)
@@ -42,6 +48,7 @@ int main()
     root->right = new BstNode(30);
     root->right->left = new BstNode(25);
     root->right->right = new BstNode(40);
+    root->right->right->right = new BstNode(60);
 
     leftView(root);
 

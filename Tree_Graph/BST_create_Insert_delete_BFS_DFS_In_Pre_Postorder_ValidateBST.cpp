@@ -7,7 +7,7 @@
 using namespace std;
 //Definition of Node for Binary search tree
 class BstNode
-{
+{-
 public:
     int data;
     BstNode* left;
@@ -89,7 +89,7 @@ void Inorder(BstNode *root)
         current=current->right ;
     }
 }
-// DFS- Preorder//use stack
+// DFS- Postorder//use stack
 void Postorder(BstNode *root)
 {
     if(root == NULL)
@@ -145,8 +145,8 @@ void LevelOrder(BstNode *root)
     //while there is at least one discovered node
     while(!Q.empty()){
         BstNode* current = Q.front();
-        // removing the element at front
         cout<<current->data<<" ";
+
         if(current->left != NULL)
             Q.push(current->left);
         if(current->right != NULL)
